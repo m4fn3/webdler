@@ -15,10 +15,10 @@ def handle_resource(resource_url: str, folder_name: str) -> str:
     asset_url = f"{resource_url.lstrip('/')}".replace("http://", "").replace("https://", "").replace(":/", "").split("?")[0]
     # convert url into the file path
     storage_url = f"./{folder_name}/{asset_url}"
-    # create necessary folders
-    os.makedirs("/".join(storage_url.split("/")[:-1]), exist_ok=True)
-    # download the resource
     try:
+        # create necessary folders
+        os.makedirs("/".join(storage_url.split("/")[:-1]), exist_ok=True)
+        # download the resource
         raw = session.get(resource_url).content
         with open(storage_url, 'wb') as file:
             file.write(raw)
