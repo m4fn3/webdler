@@ -64,7 +64,7 @@ def download_page(url: str) -> str:
     with open(f'./{folder_name}/index.html', 'w', encoding="utf-8") as file:
         file.write(str(soup))
 
-    return folder_name
+    return f"./{folder_name}/index.html"
 
 
 if __name__ == "__main__":
