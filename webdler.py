@@ -18,13 +18,12 @@ def handle_resource(resource_url: str, folder_name: str) -> str:
     # create necessary folders
     os.makedirs("/".join(storage_url.split("/")[:-1]), exist_ok=True)
     # download the resource
-    raw = session.get(resource_url).content
     try:
+        raw = session.get(resource_url).content
         with open(storage_url, 'wb') as file:
             file.write(raw)
     except:
-        with open(storage_url, 'wb', encoding="utf-8") as file:
-            file.write(raw)
+        pass
     return asset_url
 
 
@@ -68,5 +67,5 @@ def download_page(url: str) -> str:
 
 
 if __name__ == "__main__":
-    target_url = "http://milkcoffee.cf"
+    target_url = input("enter the webpage url >")
     download_page(target_url)
